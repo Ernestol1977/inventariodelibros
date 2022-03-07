@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Courgette&family=Merriweather:ital@1&family=Sansita+Swashed:wght@600&display=swap');
+
+/* 
+font-family: 'Archivo Black', sans-serif;
+font-family: 'Courgette', cursive;  -- jumbottron
+font-family: 'Merriweather', serif;
+font-family: 'Sansita Swashed', cursive; -- en h1
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(245,169,164);
+    background: linear-gradient(90deg, rgba(245,169,164,1) 0%, rgba(121,9,9,0.8883754185267857) 0%, rgba(255,201,0,1) 100%);
+}
+
+body .nav-link {
+    color: aliceblue;
+    font-family: 'Merriweather', serif;
+}
+body nav .bg-nav{
+    background: rgb(245,169,164);
+    background: linear-gradient(90deg, rgba(245,169,164,1) 0%, rgba(121,9,9,0.8883754185267857) 0%, rgba(255,201,0,1) 100%);
+}
+
+body nav .dropdown-menu {
+    background: rgb(245,169,164);
+    background: linear-gradient(90deg, rgba(245,169,164,1) 0%, rgba(121, 86, 9, 0.63) 0%, rgba(255, 200, 0, 0.603) 100%);
+}
+body nav .dropdown-item {
+    color: antiquewhite;
+    font-family: 'Merriweather', serif;
+}
+
+h1 {
+    font-family: 'Sansita Swashed', cursive;
+}
+
+div.jbt {
+    background: rgb(245,169,164);
+    background: linear-gradient(270deg, rgba(245,169,164,1) 0%, rgba(121,9,9,0.8883754185267857) 0%, rgba(255,201,0,1) 100%);
+}
+.jbt {
+    font-family: 'Courgette', cursive;
+}
