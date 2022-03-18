@@ -10,6 +10,7 @@ font-family: 'Sansita Swashed', cursive; -- en h1
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -45,4 +46,15 @@ div.jbt {
 }
 .jbt {
     font-family: 'Courgette', cursive;
+}
+
+/* centrar encabezado y contenido de la tabla */
+
+.tabla {
+    text-align: center;
+}
+
+.encabezado {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
 }
