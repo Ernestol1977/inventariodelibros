@@ -32,19 +32,6 @@ function cargaStorage (listaStorage) {
     localStorage.setItem("librosEnStorage",JSON.stringify(listaStorage));
 }
 
-// Eliminar libro uno por uno
-// function eliminarLibro(titulo) {
-//     let traerStorage = capturarStorage();
-//     let nuevoStorage = [];
-//     for (const libro of traerStorage) {
-//         if(libro.titulo == titulo) {
-//             continue;
-//         }
-//         nuevoStorage.push(libro);
-//     }
-//     cargaStorage(nuevoStorage);
-// }
-
 // Guardar libro
 function guardarNuevoLibro(libro){
     let listaStorage = capturarStorage()
