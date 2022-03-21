@@ -17,21 +17,35 @@ class Libro {
 // Declaración de array e instanciar funcion agregarlibro
 let libros = [];
 
-// verifica la existencia de un libro en la lista y me retorna boolean
-function verificarExistencia(libro){
-    for(item of libros){
-        if(item.titulo == libro.titulo ){
-            return true
-        }
+// Traer información de Storage.
+function capturarStorage() {
+    let listaStorage= JSON.parse(localStorage.getItem("librosEnStorage"))
+    if(listaStorage == null || listaStorage == undefined){
+        return []
     }
-    return false
+    return listaStorage; 
 }
 
-//recive un objeto tipo Libro y lo almacena en la lista Libros
-function agregarlibro(libro){
-    if(verificarExistencia(libro)){
-        alert("Libro existente")
-    }else{
-        libros.unshift(libro)
+// Carga los datos en Storage
+function cargaStorage (listaStorage) {
+    localStorage.setItem("librosEnStorage",JSON.stringify(listaStorage));
+}
+
+// Eliminar libro uno por uno
+function eliminarLibro(titulo) {
+    let traerStorage = capturarStorage();
+    let nuevoStorage = [];
+    for (const libro of traerStorage) {
+        if(libro.titulo == titulo) {
+            continue;
+        }
+        nuevoStorage.push(libro);
     }
+    cargaStorage(nuevoStorage);
+}
+
+function guardarNuevoLibro(libro){
+    let listaStorage = capturarStorage()
+    listaStorage.unshift(libro)
+    cargaStorage(listaStorage)
 }

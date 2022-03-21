@@ -22,6 +22,7 @@
             los que no vuelven más...</p>
     </div>
 
+    <!-- Input de carga -->
     <div class="contenido container-lg mt-5 ">
         <form action="" id="reset">
             <div class="row">
@@ -60,22 +61,23 @@
         </form>
     </div>
 
+
+    <!-- Botones Ingresar, Modificar y borrar todo -->
     <div class="container my-5">
         <div class="row">
-            <div class="col-sm-4">
-                <button type="button" id="ingresaLibro" class="btn btn-outline-success">Ingresar libro</button>
+            <div class="col-sm-3 text-center">
+                <button type="button" id="ingresaLibro" class="btn btn-outline-success btnGeneral">Ingresar libro</button>
             </div>
-            <div class="col-sm-4">
-                <button type="button" id="modificarLibro" class="btn btn-outline-warning">Modificar libro</button>
-            </div>
-            <div class="col-sm-4">
-                <button type="button" id="eliminarLibro" class="btn btn-outline-danger">Eliminar libro</button>
+            <div class="col-sm-3 text-center">
+                <button type="button" id="eliminarLibro" class="btn btn-outline-danger btnGeneral">Eliminar libros</button>
             </div>
         </div>
     </div>
 
-    <div class="m-3 py-5 tabla">
-        <button class="btn btn-light mb-3" type="button" id="Actualizar">Actualizar</button>
+
+    <!-- Encabezado tabla de libros -->
+    <div class="m-3 py-3 tabla">
+        <button class="btn btn-outline-dark mb-3" type="button" id="Actualizar">Actualizar</button>
 
         <div class="row encabezado">
             <div class="col">
@@ -110,12 +112,26 @@
                 Precio
             </div>
 
+            <div btnIndividual class="col">
+                Acción
+            </div>
+
         </div>
 
-        <div id="mostrar" class="mostrar">
+        <!-- Lista de datos cargados -->
+        <div id="mostrar" class="listaImpresa mostrar">
         </div>
     </div>
 
+
+
+    <!-- <div class="col">
+        <botton class="btn btnModificar"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></botton>
+        <botton type="button" class="btn btnEliminar"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
+        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/></svg></botton>
+    </div> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

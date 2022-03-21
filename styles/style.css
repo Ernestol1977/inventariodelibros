@@ -57,4 +57,16 @@ div.jbt {
 .encabezado {
     font-weight: bold;
     border-bottom: 2px solid #000;
+    justify-content: center;
 }
+
+.row {
+    justify-content: center;
+}
+
+
+/* Botones */
+.btnGeneral {
+    box-shadow: 0px 0px 15px 0 rgba(0,0,0,0.2);
+}
+
