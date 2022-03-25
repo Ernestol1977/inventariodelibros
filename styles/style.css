@@ -13,12 +13,8 @@ font-family: 'Sansita Swashed', cursive; -- en h1
 }
 
 body {
-    background:
-    url(/img/library.jpg),
-    #d9c4aa;
-    background-blend-mode: screen;
+    background-image: url(../img/library_op20.jpg);
     background-size:contain;
-    
 }
 
 h1 {
@@ -28,7 +24,7 @@ h1 {
 
 .jbt {
     font-family: 'Courgette', cursive;
-    color: #796248 !important;
+    color: #3c4856 !important;
 
 }
 
@@ -57,6 +53,7 @@ h1 {
 
 .row {
     justify-content: center;
+    row-gap: 10px;
 }
 
 .mostrar {
@@ -72,8 +69,4 @@ font-style: italic;
 /* Botones */
 .btnGeneral {
     box-shadow: 0px 0px 15px 0 rgba(0,0,0,0.2);
-}
-
-.Toastify {
-    border-radius: 15px;
 }

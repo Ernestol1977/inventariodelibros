@@ -96,6 +96,7 @@ btnborrar.addEventListener("click", () => {
         title: 'Esta seguro?',
         text: "Esta por borrar toda su lista, incluyendo Storage!",
         icon: 'warning',
+        iconColor: 'yellow',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         background: '#d9c4aa',
