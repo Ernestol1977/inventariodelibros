@@ -39,8 +39,8 @@ function guardarNuevoLibro(libro){
     cargaStorage(listaStorage)
 }
 
-function eliminarDeAUno(libros) {
-    let index = libros.findIndex((libro) => libro.titulo === libros.titulo);
+function eliminarDeAUno(libro) {
+    let index = libros.findIndex((elemento) => elemento.titulo === libro.titulo);
     libros.splice(index, 1);
 
     if (libros.lenght === 0) {
@@ -50,3 +50,6 @@ function eliminarDeAUno(libros) {
     localStorage.setItem("librosEnStorage", JSON.stringify(listaStorage));
     crearString(libros);
 } 
+
+
+DateTime.now().setZone('America/New_York').minus({weeks:1}).endOf('day').toISO();

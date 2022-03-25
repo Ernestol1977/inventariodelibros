@@ -20,11 +20,11 @@ function crearString() {
     for (const libro of librostraidos) {
         string += `
     <div class="row contenido libro">
-        <div class="col tituloLibro">${libro.titulo}</div>
+        <div class="col tituloLibro text-capitalize">${libro.titulo}</div>
 
-        <div class="col">${libro.autor}</div>
+        <div class="col text-capitalize ">${libro.autor}</div>
 
-        <div class="col">${libro.editorial}</div>
+        <div class="col text-capitalize ">${libro.editorial}</div>
 
         <div class="col">${libro.edicion}</div>
 
@@ -36,19 +36,14 @@ function crearString() {
 
         <div class="col">${libro.precio}</div>
         
-        <div class="col">
-            <button class="btn btnModificar">modificar</button>
-
-            <button id="${libro.titulo}" class="btn btn-outline-dark" type="submit">Eliminar</button>
-        </div>
     </div>
     `
-    // let btnEliminar = document.getElementById(`${libro.titulo}`)
-    // btnEliminar.addEventListener("click", () =>
-    // eliminarDeAUno()
-    // )
+        // let btnEliminar = document.getElementById(`libro.titulo`)
+        // btnEliminar.addEventListener("click", () =>
+        //     eliminarDeAUno(libro)
+        // )
     }
-    
+
     return string
 }
 
@@ -65,6 +60,7 @@ function actualizarPantalla() {
     document.getElementById("reset").reset();
 }
 
+
 // Definición botón Ingresar
 let btnIngresar = document.getElementById("ingresaLibro")
 btnIngresar.addEventListener("click", () => {
@@ -72,17 +68,62 @@ btnIngresar.addEventListener("click", () => {
     let nuevoLibro = capturarValores();
     guardarNuevoLibro(nuevoLibro);
 
+    Toastify({
+        text: "Libro ingresado",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+            background: "#796248",
+            // border: '5px',
+        },
+        onClick: function () {}
+    }).showToast();
+
     actualizarPantalla()
 })
 
 // Definir botón borrar todo
 let btnborrar = document.getElementById("eliminarLibro");
 btnborrar.addEventListener("click", () => {
-
     let cuerpo = document.getElementById("mostrar");
-    cuerpo.textContent = ""
-    localStorage.clear()
-    libros = [];
+
+    Swal.fire({
+        title: 'Esta seguro?',
+        text: "Esta por borrar toda su lista, incluyendo Storage!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        background: '#d9c4aa',
+        cancelButtonColor: '#198754',
+        confirmButtonText: 'Borrar todos'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Borrado!',
+                text: 'Sus libros han sido borrados con exito!',
+                icon: 'success',
+                iconColor: '#418a83',
+                background: '#d9c4aa',
+                confirmButtonColor: '#212529'
+            })
+            cuerpo.textContent = ""
+            localStorage.clear()
+            libros = [];
+        }
+    })
+
+    if (true) {
+
+    }
+
+
+
+
 })
 
 // Definir botón Actualizar
@@ -91,4 +132,3 @@ btnActualizar.addEventListener("click", () => {
 
     actualizarPantalla()
 })
-
