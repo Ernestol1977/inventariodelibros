@@ -1,7 +1,8 @@
 // Creo la clase
 class Libro {
-    constructor(titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario, precio) {
-        // this.isbn = isbn; agregar resto
+    constructor(isbn, titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario) {
+
+        this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.editorial = editorial;
@@ -9,7 +10,6 @@ class Libro {
         this.ano = ano;
         this.numeroPaginas = numeroPaginas;
         this.generoLiterario = generoLiterario;
-        this.precio = precio
         this.estaDisponible = true;
     }
     
@@ -39,6 +39,7 @@ function guardarNuevoLibro(libro){
     cargaStorage(listaStorage)
 }
 
+/*
 function eliminarDeAUno(libro) {
     let index = libros.findIndex((elemento) => elemento.titulo === libro.titulo);
     libros.splice(index, 1);
@@ -49,7 +50,5 @@ function eliminarDeAUno(libro) {
 
     localStorage.setItem("librosEnStorage", JSON.stringify(listaStorage));
     crearString(libros);
-} 
-
-
-DateTime.now().setZone('America/New_York').minus({weeks:1}).endOf('day').toISO();
+}
+*/
