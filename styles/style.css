@@ -32,6 +32,7 @@ h1 {
     text-shadow: 0 4px 8px;
 }
 
+/* formato de las casillas-input */
 .cssInput {
     background-color: #d8cbbb;
     color: #3c4856;
@@ -51,7 +52,7 @@ h1 {
     justify-content: center;
 }
 
-.row {
+.rowEspacio {
     justify-content: center;
     row-gap: 10px;
 }
@@ -69,4 +70,8 @@ font-style: italic;
 /* Botones */
 .btnGeneral {
     box-shadow: 0px 0px 15px 0 rgba(0,0,0,0.2);
+}
+
+.fraseP {
+    text-align: right;
 }

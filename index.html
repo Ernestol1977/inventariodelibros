@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shorcut icon" href="./img/books_favicon.png">
+
+    <!-- Link Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Link Toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- link estilos -->
     <link rel="stylesheet" href="./styles/style.css">
 
     <title>Inventario de Libros</title>
@@ -17,7 +22,7 @@
 
 <body>
     <h1 class="container text-center">Inventario de Libros</h1>
-
+    
     <div class="mt-4 ms-4 p-3 jbt">
         <h3>Por qué mantener su base de datos actualizada?</h3>
         <p>Porque es la única forma de llevar un minucioso control sobre sus libros, los que se prestan, los que
@@ -25,10 +30,13 @@
             los que no vuelven más...</p>
     </div>
 
+    <!-- Frase del día -->
+    <div id="frase" class="frase"></div>
+    
     <!-- Input de carga -->
     <div class="contenido container-lg mt-3">
         <form action="" id="reset">
-            <div class="row">
+            <div class="row rowEspacio">
                 <div class="col-sm-6 col-xxl-3">
                     <input type="number" name="ISBN" class="cssInput" id="isbn" required>ISBN
                 </div>
@@ -65,35 +73,36 @@
         </form>
     </div>
 
-
-    <!-- Botones Ingresar, Modificar y borrar todo -->
-    <div class="container mt-4">
-        <div class="row">
+    <!-- Botones Ingresar y borrar todo -->
+    <div class="container mt-5">
+        <div class="row rowEspacio">
             <div class="col-sm-3 text-center">
-                <button type="button" id="ingresaLibro" class="btn btn-outline-success btnGeneral">Ingresar
-                    libro</button>
+                <button type="button" id="ingresaLibro" class="btn btn-outline-success btnGeneral">Ingresar libro</button>
             </div>
             <div class="col-sm-3 text-center">
-                <button type="button" id="eliminarLibro" class="btn btn-outline-danger btnGeneral">Eliminar
-                    libros</button>
+                <button type="button" id="eliminarLibro" class="btn btn-outline-danger btnGeneral">Eliminar libros</button>
             </div>
         </div>
     </div>
 
+    <!-- Botones Actualizar y enviar mail -->
+    <div class="container mt-4">
+        <div class="row rowEspacio">
+            <div class="col-sm-3 text-center">
+                <button type="button" id="actualizar" class="btn btn-outline-dark mb-3 btnGeneral">Actualizar libros</button>
+            </div>
+            <div class="col-sm-3 text-center">
+                <button type="button" id="enviar" class="btn btn-outline-primary mb-3 btnGeneral">Enviar lista</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Encabezado tabla de libros -->
-    <div class="m-3 py-3 tabla">
-        <button class="btn btn-outline-dark mb-3 btnGeneral" type="button" id="Actualizar">Actualizar</button>
-        <button class="btn btn-outline-dark mb-3 btnGeneral" type="button" id="enviar">Enviar mail</button>
+    <div class="container-fluid tabla mt-5">
         <div class="row encabezado">
             <div class="col">
                 ISBN
             </div>
-
-            <div class="col">
-                Portada
-            </div>
-
 
             <div class="col">
                 Título
@@ -122,7 +131,6 @@
             <div class="col">
                 Género literario
             </div>
-
         </div>
 
         <!-- Lista de datos cargados -->
@@ -130,24 +138,23 @@
         </div>
     </div>
 
-
+    <!-- enlaces Bootsptrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
     </script>
 
+
+    <!-- enlaces a archivos JS -->
     <script src="./custom.js"></script>
-    <script src="./emailjs.js"></script>
     <script src="./dom.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init("BCQe7XybcP7n4FGwj");
-        })();
-    </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- enlaces a Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <!-- enlace a Sweetalert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

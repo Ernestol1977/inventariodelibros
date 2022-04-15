@@ -19,17 +19,14 @@ function crearString() {
 
     for (const libro of librostraidos) {
         string += `
-        <div class="row py-1">
+    <div class="row contenido libro">
+        <div class="col">${libro.isbn}</div>
 
-        <div class="col" name="libro">${libro.isbn}</div>
-        
-        <div class="col" id="portada"></div>
+        <div class="col tituloLibro text-capitalize">${libro.titulo}</div>
 
-        <div class="col tituloLibro text-capitalize" name="libro">${libro.titulo}</div>
+        <div class="col text-capitalize ">${libro.autor}</div>
 
-        <div class="col text-capitalize" name="libro">${libro.autor}</div>
-
-        <div class="col text-capitalize">${libro.editorial}</div>
+        <div class="col text-capitalize ">${libro.editorial}</div>
 
         <div class="col">${libro.edicion}</div>
 
@@ -38,10 +35,13 @@ function crearString() {
         <div class="col">${libro.numeroPaginas}</div>
 
         <div class="col">${libro.generoLiterario}</div>
-
         
     </div>
     `
+        // let btnEliminar = document.getElementById(`libro.titulo`)
+        // btnEliminar.addEventListener("click", () =>
+        //     eliminarDeAUno(libro)
+        // )
     }
 
     return string
@@ -65,8 +65,6 @@ btnIngresar.addEventListener("click", () => {
 
     let nuevoLibro = capturarValores();
     guardarNuevoLibro(nuevoLibro);
-    
-    actualizarPantalla()
 
     Toastify({
         text: "Libro ingresado",
@@ -83,6 +81,8 @@ btnIngresar.addEventListener("click", () => {
         },
         onClick: function () {}
     }).showToast();
+
+    actualizarPantalla()
 })
 
 // Definir botón borrar todo
@@ -90,7 +90,6 @@ let btnborrar = document.getElementById("eliminarLibro");
 btnborrar.addEventListener("click", () => {
     let cuerpo = document.getElementById("mostrar");
 
-    // Alert antes de borrar
     Swal.fire({
         title: 'Esta seguro?',
         text: "Esta por borrar toda su lista, incluyendo Storage!",
@@ -124,74 +123,41 @@ btnborrar.addEventListener("click", () => {
 })
 
 // Definir botón Actualizar
-let btnActualizar = document.getElementById("Actualizar");
+let btnActualizar = document.getElementById("actualizar");
 btnActualizar.addEventListener("click", () => {
 
     actualizarPantalla()
 })
 
-// Definir botón Enviar mail
-let btnEnviar = document.getElementById("enviar");
-btnEnviar.addEventListener("click", () => {
-
-    mail()
+// Fetch de frases - url
+fetch("https://type.fit/api/quotes")
+.then((response)=>response.json())
+.then((json)=>{
+    mostrarFrase(json);
 })
+.catch((err)=>console.log(err));
 
-// asincronimo para el funcionamiento del boton de enviar
-async function mail () {
-    const { value: email } = await Swal.fire({
-        title: 'Enter your email address',
-        text: "We won't save your information",
-        input: 'email',
-        inputPlaceholder: 'example@gmail.com',
+// Reemplazar null por Desconocido
+
+// Función para mostrar de a una frace por día, cíclico
+
+// if (element.author === null) {
+//     element.author = "Desconocido";
+// }
+
+function mostrarFrase(data) {
+    const nodo = document.querySelector("#frase");
+
+    nodo.innerHTML = "";
+    data.forEach(element => {
+        let li = document.createElement("li");
+        li.innerHTML =`
+        <div class="mx-auto w-25 frase">
+        <h6 class="text-center text-secondary"><strong><em>"${element.text}"</em></strong></h4>
+        <p class="text-muted fraseP">${element.author}</p>
+        </div>
+        `;
+        nodo.appendChild(li);
+        
     });
-    if (email) {
-        Swal.fire(`Entered email: ${email}`)
-    }
-    const { value: name } = await Swal.fire({
-        title: 'Enter your name',
-        input: 'text',
-        inputPlaceholder: 'Name',
-    });
-    btnEnviar.innerText = "Sending..."
-    input(name, email); 
-}   
-
-function input(name,email) {
-    let x = {
-        name: `${name}`,
-        email: `${email}`,
-        libro: enviar()
-    }
-
-
-    emailjs.send('service_1om73uc', 'template_pgv2qeb', x)
-        .then(function (response) {
-            Swal.fire({
-                title: "E-mail sent",
-                icon: "success"
-            })
-            btnEnviar.innerText = "Send to E-mail"
-            console.log('SUCCESS!', response.status, response.text);
-        }, function (error) {
-            Swal.fire({
-                title: "Couldn't send your e-mail, try again later",
-                icon: "error"
-            })
-            console.log('FAILED...', error);
-        });
-} 
-
-
-// lo que envio como contenido del mail
-function enviar(storage) {
-    let string = "";
-    for (const lib of storage) {
-        string += `
-|| ISBN: ${lib.isbn} Titulo: ${lib.titulo} Autor: ${lib.autor} ||
-`
-    }
-    return string;
 }
-
-x
