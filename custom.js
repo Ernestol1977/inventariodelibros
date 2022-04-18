@@ -22,33 +22,51 @@ let libros = [];
 function capturarStorage() {
     let listaStorage= JSON.parse(localStorage.getItem("librosEnStorage"))
     if(listaStorage == null || listaStorage == undefined){
-        return []
-    }
+        return [];
+    };
     return listaStorage; 
 }
 
 // Carga los datos en Storage
 function cargaStorage (listaStorage) {
     localStorage.setItem("librosEnStorage",JSON.stringify(listaStorage));
-}
+};
 
 // Guardar libro
 function guardarNuevoLibro(libro){
-    let listaStorage = capturarStorage()
-    listaStorage.unshift(libro)
-    cargaStorage(listaStorage)
-}
+    let listaStorage = capturarStorage();
+    listaStorage.unshift(libro);
+    cargaStorage(listaStorage);
+};
 
-/*
-function eliminarDeAUno(libro) {
-    let index = libros.findIndex((elemento) => elemento.titulo === libro.titulo);
-    libros.splice(index, 1);
+// Borrar un libro del storage
+function eliminarDeAUno(codigo){
+    const listaStorage = capturarStorage();
+    const nuevaLista = [];
 
-    if (libros.lenght === 0) {
-        libros = [];
-    }
+    for(const libro of listaStorage){
+        if(libro.isbn==codigo){
+            continue;
+        };
+        nuevaLista.push(libro);
+    };
 
-    localStorage.setItem("librosEnStorage", JSON.stringify(listaStorage));
-    crearString(libros);
-}
-*/
+    cargaStorage(nuevaLista);
+};
+
+
+// Retorna un número aleatorio entre min (incluido) y max (excluido)
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+// Función para enviar libro
+function librosString (storage) {
+    let string = ""; 
+    for (const libro of storage) {
+        string += `
+        Libro: ${libro.isbn}, Titulo: ${libro.titulo}, Autor: ${libro.autor}, Editorial: ${libro.editorial} || 
+        `
+    };
+    return string; 
+};

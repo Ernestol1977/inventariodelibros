@@ -75,3 +75,13 @@ font-style: italic;
 .fraseP {
     text-align: right;
 }
+
+
+
+.borrarUno{
+    font-size: 20px;
+}
+
+.borrarUno:hover {
+    color: rgb(255, 0, 0);
+}

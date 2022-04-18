@@ -1,3 +1,8 @@
+// primero actualiza la los datos
+actualizarPantalla();
+
+botonEliminarIndividual();
+
 // Captura los valores del Input
 function capturarValores() {
     let isbn = document.getElementById("isbn").value;
@@ -9,58 +14,71 @@ function capturarValores() {
     let numeroPaginas = document.getElementById("numeroPaginas").value;
     let generoLiterario = document.getElementById("generoLiterario").value;
 
-    return new Libro(isbn, titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario)
+    return new Libro(isbn, titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario);
 
-}
+};
 
 function crearString() {
-    let librostraidos = capturarStorage()
+    let librostraidos = capturarStorage();
     let string = "";
 
     for (const libro of librostraidos) {
         string += `
-    <div class="row contenido libro">
-        <div class="col">${libro.isbn}</div>
+        <div class="row contenido libro">
+            <div class="col">${libro.isbn}</div>
 
-        <div class="col tituloLibro text-capitalize">${libro.titulo}</div>
+            <div class="col tituloLibro text-capitalize">${libro.titulo}</div>
 
-        <div class="col text-capitalize ">${libro.autor}</div>
+            <div class="col text-capitalize">${libro.autor}</div>
 
-        <div class="col text-capitalize ">${libro.editorial}</div>
+            <div class="col text-capitalize">${libro.editorial}</div>
 
-        <div class="col">${libro.edicion}</div>
+            <div class="col">${libro.edicion}</div>
 
-        <div class="col">${libro.ano}</div>
+            <div class="col">${libro.ano}</div>
 
-        <div class="col">${libro.numeroPaginas}</div>
+            <div class="col">${libro.numeroPaginas}</div>
 
-        <div class="col">${libro.generoLiterario}</div>
-        
-    </div>
-    `
-        // let btnEliminar = document.getElementById(`libro.titulo`)
-        // btnEliminar.addEventListener("click", () =>
-        //     eliminarDeAUno(libro)
-        // )
-    }
+            <div class="col">${libro.generoLiterario}</div>
 
-    return string
+            <div class="col">
+                <botton id="eliminar${libro.isbn}" class="borrarUno" type="button"><i class="fa-solid fa-trash-can"></i></botton>
+            </div>
+            
+        </div>
+        `
+    };
+
+    return string;
 }
 
 function actualizarPantalla() {
     let cuerpo = document.getElementById("mostrar");
-    cuerpo.textContent = ""
+    cuerpo.textContent = "";
 
-    let divMostrar = document.createElement("div")
-    divMostrar.innerHTML = crearString()
+    let divMostrar = document.createElement("div");
+    divMostrar.innerHTML = crearString();
 
-    cuerpo.appendChild(divMostrar)
+    cuerpo.appendChild(divMostrar);
 
     document.getElementById("reset").reset();
+    botonEliminarIndividual();
+    
 }
 
+function botonEliminarIndividual(){
+    let librostraidos = capturarStorage();
+    for (const libro of librostraidos) {
+        let btnEliminar = document.getElementById(`eliminar${libro.isbn}`);
+        btnEliminar.addEventListener("click", () => {
+            eliminarDeAUno(libro.isbn);
+            actualizarPantalla();
+        });
+    };
+};
+
 // Definición botón Ingresar
-let btnIngresar = document.getElementById("ingresaLibro")
+let btnIngresar = document.getElementById("ingresaLibro");
 btnIngresar.addEventListener("click", () => {
 
     let nuevoLibro = capturarValores();
@@ -79,11 +97,12 @@ btnIngresar.addEventListener("click", () => {
             background: "#796248",
             // border: '5px',
         },
-        onClick: function () {}
+        onClick: function () { }
     }).showToast();
 
-    actualizarPantalla()
-})
+    actualizarPantalla();
+    
+});
 
 // Definir botón borrar todo
 let btnborrar = document.getElementById("eliminarLibro");
@@ -113,51 +132,103 @@ btnborrar.addEventListener("click", () => {
             cuerpo.textContent = ""
             localStorage.clear()
             libros = [];
-        }
-    })
+        };
+    });
 
     if (true) {
 
-    }
+    };
 
-})
+});
 
 // Definir botón Actualizar
 let btnActualizar = document.getElementById("actualizar");
 btnActualizar.addEventListener("click", () => {
 
-    actualizarPantalla()
-})
+    actualizarPantalla();
+});
 
 // Fetch de frases - url
 fetch("https://type.fit/api/quotes")
-.then((response)=>response.json())
-.then((json)=>{
-    mostrarFrase(json);
-})
-.catch((err)=>console.log(err));
+    .then((response) => response.json())
+    .then((json) => {
+        mostrarFrase(json);
+    })
+    .catch((err) => console.log(err));
 
-// Reemplazar null por Desconocido
 
-// Función para mostrar de a una frace por día, cíclico
-
-// if (element.author === null) {
-//     element.author = "Desconocido";
-// }
-
-function mostrarFrase(data) {
+// Mostrar frase aleatoria
+    function mostrarFrase(data) {
     const nodo = document.querySelector("#frase");
 
+    let autor = ""
+    let indice = getRandom(0, (data.length + 1));
     nodo.innerHTML = "";
-    data.forEach(element => {
-        let li = document.createElement("li");
-        li.innerHTML =`
+
+    autor = data[indice].author
+    if (autor == null) {
+        autor = "Desconocido";
+    };
+
+    let li = document.createElement("li");
+    li.innerHTML = `
         <div class="mx-auto w-25 frase">
-        <h6 class="text-center text-secondary"><strong><em>"${element.text}"</em></strong></h4>
-        <p class="text-muted fraseP">${element.author}</p>
+        <h6 class="text-center text-secondary"><strong><em>"${data[indice].text}"</em></strong></h4>
+        <p class="text-muted fraseP">${autor}</p>
         </div>
         `;
-        nodo.appendChild(li);
-        
+
+    nodo.appendChild(li);
+};
+
+//boton para enviar tareas al mail
+btnSend = document.getElementById("enviar");
+btnSend.addEventListener('click', function (event) {
+    inputs();
+});
+
+// Asincronimo para el funcionamiento del boton de enviar
+async function inputs() {
+    const { value: email } = await Swal.fire({
+        title: 'Ingrese su email',
+        text: "Esta información no será guardada",
+        input: 'email',
+        inputPlaceholder: 'example@gmail.com',
     });
-}
+    if (email) {
+        Swal.fire(`Entered email: ${email}`)
+    };
+    const { value: name } = await Swal.fire({
+        title: 'Ingrese su nombre',
+        input: 'text',
+        inputPlaceholder: 'Nombre',
+    });
+    btnSend.innerText = "Sending..."
+    datos(name, email);
+};
+
+
+// funcionamiento de emailjs
+function datos(name, email) {
+    let templateParams = {
+        name: `${name}`,
+        email: `${email}`,
+        message: librosString(capturarStorage())
+    };
+
+    emailjs.send('service_1om73uc', 'template_pgv2qeb', templateParams)
+        .then(function (response) {
+            Swal.fire({
+                title: "E-mail sent",
+                icon: "success"
+            })
+            btnSend.innerText = "Send to E-mail"
+            console.log('SUCCESS!', response.status, response.text);
+        }, function (error) {
+            Swal.fire({
+                title: "Couldn't send your e-mail, try again later",
+                icon: "error"
+            })
+            console.log('FAILED...', error);
+        });
+};

@@ -14,8 +14,13 @@
     <!-- Link Toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <!-- Link Fontawesome -->
+    <script src="https://kit.fontawesome.com/17bef19db1.js" crossorigin="anonymous"></script>
+    
     <!-- link estilos -->
     <link rel="stylesheet" href="./styles/style.css">
+
+
 
     <title>Inventario de Libros</title>
 </head>
@@ -68,7 +73,8 @@
                 <div class="col-sm-6 col-xxl-3">
                     <input type="text" name="genero" class="cssInput" id="generoLiterario">Género
                 </div>
-
+                
+                
             </div>
         </form>
     </div>
@@ -84,7 +90,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Botones Actualizar y enviar mail -->
     <div class="container mt-4">
         <div class="row rowEspacio">
@@ -131,6 +137,10 @@
             <div class="col">
                 Género literario
             </div>
+
+            <div class="col">
+                
+            </div>
         </div>
 
         <!-- Lista de datos cargados -->
@@ -156,6 +166,15 @@
 
     <!-- enlace a Sweetalert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- enlace a Email.js -->
+    <script src="emailjs.js"></script>
+
+    <script type="text/javascript">
+        (function(){
+        emailjs.init("BCQe7XybcP7n4FGwj");
+        })();
+    </script>
 
 </body>
 
