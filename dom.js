@@ -14,8 +14,16 @@ function capturarValores() {
     let numeroPaginas = document.getElementById("numeroPaginas").value;
     let generoLiterario = document.getElementById("generoLiterario").value;
 
-    return new Libro(isbn, titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario);
-
+    if (isbn.trim() === "" || titulo.trim() === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Faltan datos!',
+            text: 'Rellenar los campos de ISBN y Títulos',
+        })
+        return null;
+    } else {
+        return new Libro(isbn, titulo, autor, editorial, edicion, ano, numeroPaginas, generoLiterario);
+    };
 };
 
 function crearString() {
@@ -63,10 +71,10 @@ function actualizarPantalla() {
 
     document.getElementById("reset").reset();
     botonEliminarIndividual();
-    
+
 }
 
-function botonEliminarIndividual(){
+function botonEliminarIndividual() {
     let librostraidos = capturarStorage();
     for (const libro of librostraidos) {
         let btnEliminar = document.getElementById(`eliminar${libro.isbn}`);
@@ -82,26 +90,28 @@ let btnIngresar = document.getElementById("ingresaLibro");
 btnIngresar.addEventListener("click", () => {
 
     let nuevoLibro = capturarValores();
-    guardarNuevoLibro(nuevoLibro);
+    if (nuevoLibro) {
+        guardarNuevoLibro(nuevoLibro);
 
-    Toastify({
-        text: "Libro ingresado",
-        duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-            background: "#796248",
-            // border: '5px',
-        },
-        onClick: function () { }
-    }).showToast();
+        Toastify({
+            text: "Libro ingresado",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "#796248",
+                // border: '5px',
+            },
+            onClick: function () {}
+        }).showToast();
+    }
 
     actualizarPantalla();
-    
+
 });
 
 // Definir botón borrar todo
@@ -158,7 +168,7 @@ fetch("https://type.fit/api/quotes")
 
 
 // Mostrar frase aleatoria
-    function mostrarFrase(data) {
+function mostrarFrase(data) {
     const nodo = document.querySelector("#frase");
 
     let autor = ""
@@ -189,7 +199,9 @@ btnSend.addEventListener('click', function (event) {
 
 // Asincronimo para el funcionamiento del boton de enviar
 async function inputs() {
-    const { value: email } = await Swal.fire({
+    const {
+        value: email
+    } = await Swal.fire({
         title: 'Ingrese su email',
         text: "Esta información no será guardada",
         input: 'email',
@@ -198,7 +210,9 @@ async function inputs() {
     if (email) {
         Swal.fire(`Entered email: ${email}`)
     };
-    const { value: name } = await Swal.fire({
+    const {
+        value: name
+    } = await Swal.fire({
         title: 'Ingrese su nombre',
         input: 'text',
         inputPlaceholder: 'Nombre',
